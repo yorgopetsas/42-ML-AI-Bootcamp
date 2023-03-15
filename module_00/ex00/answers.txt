@@ -1,0 +1,5 @@
+1. pip/3 list 
+2. pip/3 show numpy
+3. pip/3 uninstall
+4. pip/3 install
+5. pip/3 freeze > requirements.txt
