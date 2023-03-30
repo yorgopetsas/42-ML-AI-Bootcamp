@@ -61,7 +61,7 @@ morse = {
 
 
 for i in sys.argv[1]:
-    if i is ' ':
+    if i == ' ':
         continue
     if i.isalnum():
         continue
