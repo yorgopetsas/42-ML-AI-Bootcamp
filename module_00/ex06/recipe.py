@@ -2,7 +2,23 @@ import os
 
 os.system('clear')
 
-cookbook = [{'name' : 'bocadillo','ingredients': ['jamón', 'pan', 'queso', 'tomate'],'meal': "almuerzo",'prep_time': 10}, {'name' : 'tarta', 'ingredients': ['harina', 'azúcar', 'huevos'],'meal': "postre",'prep_time': 60}, {'name' : 'salad','ingredients': ['aguacate', 'rúcula', 'tomates', 'espinacas'],'meal': "almuerzo",'prep_time': 15}]
+cookbook = [
+        {
+            'name' : 'bocadillo',
+            'ingredients': ['jamón', 'pan', 'queso', 'tomate'],
+            'meal': "almuerzo",'prep_time': 10
+        }, 
+        {
+            'name' : 'tarta',
+            'ingredients': ['harina', 'azúcar', 'huevos'],
+            'meal': "postre",'prep_time': 60
+        }, 
+        {
+            'name' : 'salad',
+            'ingredients': ['aguacate', 'rúcula', 'tomates', 'espinacas'],
+            'meal': "almuerzo",'prep_time': 15
+        }
+    ]
 
 
 def addRecipe():
