@@ -59,20 +59,39 @@ morse = {
     '@': '· − − · − ·',
 }
 
+prompt = []
 
-for i in sys.argv[1]:
-    if i == ' ':
-        continue
-    if i.isalnum():
-        continue
-    else:
-        print('Error')
-        exit()
+if len(sys.argv) < 2:
+    print('\nError.Please provide at least one argument')
 
-text = sys.argv[1]
+for i, l in enumerate(sys.argv):
+    for x, l in enumerate(sys.argv[i]):
+        print(x)
+        if i == 0:
+            continue
+        if l == " ":
+            prompt.append(l)
+        elif l.isalnum():
+            prompt.append(l)
+        
+        # else:
+        #     print(prompt)
+        #     exit()
 
-for i in text:
+    arg_len = len(sys.argv[i])
+    if arg_len > x + 1:
+        print('end')
+    print(arg_len)
+    # print(i)
+    if i > 0:
+        prompt.append(" ")
+    print(prompt)
+
+jtext = "".join(prompt)
+
+for i in jtext:
     if i == ' ':
         print('/', end=' ')
     else:
         print(morse[i.upper()], end=' ')
+print()
