@@ -5,7 +5,7 @@ import string
 def text_analyzer():
     x = sys.argv[1]
     print(f'\nThe text is {len(x)} caracter(s) long')
-    up = lo = pu = 0
+    up = lo = pu = s = 0
 
     for c in x:
         if c.isupper():
@@ -16,12 +16,12 @@ def text_analyzer():
             pu = pu + 1
         elif c == " ":
             s = s + 1
-    print(f'{lo} Lower case letters\n{up} Upper case letters\n{pu} Puntions\n')
+    print(f'{lo} Lower case letters\n{up} Upper case letters\n{pu} Puntions\n{s} Spaces\n')
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 2:
-        print("Error: More then 1 argument")
+        print("Error: More then 1 argument.\nMake sure the text is surrounded by quotation marks.\nExample: \"text\" or \'text\'")
         exit()
 
     elif len(sys.argv) > 1:
