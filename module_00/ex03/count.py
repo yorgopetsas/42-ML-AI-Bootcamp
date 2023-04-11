@@ -3,6 +3,7 @@ import string
 
 
 def text_analyzer():
+    '''This function prints out how many spaces, lower case letters, upper case letters and punctuations were found in the provided string'''
     x = sys.argv[1]
     print(f'\nThe text is {len(x)} caracter(s) long')
     up = lo = pu = s = 0
