@@ -5,7 +5,7 @@ def whois(x):
 
     if (x.isdigit() is False):
         print("\nPlease provide a whole number. ", end='')
-        print("No decimal separators, float nor strings allowed)\n")
+        print("No decimal separators, float nor strings allowed\n")
         exit()
     if int(x) == 0:
         print(f"\nThe number {x} is Even.")
