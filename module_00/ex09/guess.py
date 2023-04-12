@@ -3,7 +3,7 @@ from random import randint
 
 
 text = 'This is an interactive guessing game!\n'\
-        'You have to enter a number between 1 and 99 to find out'\
+        'You have to enter a number between 1 and 99 to find out '\
         'the secret number.\nType \'exit\' to end the game.\nGood Luck!\n'
 print(text)
 down_limit = 1
