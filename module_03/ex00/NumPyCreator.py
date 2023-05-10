@@ -1,16 +1,17 @@
 import numpy as np
 
+
 class NumPyCreator():
-
-
 	def __init__(self):
 		pass
+
+
 	def from_list(self, a):
 		print(np.asarray(a))
 	def from_tuple(self, tpl):
 		print(np.asarray(tpl))
 	def from_iterable(self, itr):
-		pass
+		print(np.fromiter(itr, float))
 	def from_shape(self, shapex, shapey, value="0"):
 		print(np.full((shapex, shapey), 0))
 	def random(self, shapex, shapey):
@@ -29,7 +30,7 @@ def main():
 	my_obj = NumPyCreator()
 	my_obj.from_list(a)
 	my_obj.from_tuple(b)
-	# my_obj.from_iterable(range(5))
+	my_obj.from_iterable(range(5))
 	my_obj.from_shape(shape[0], shape[1])
 	my_obj.random(shape[0], shape[1])
 	my_obj.identity(identity)
@@ -38,5 +39,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
