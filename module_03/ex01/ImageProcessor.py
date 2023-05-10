@@ -1,5 +1,9 @@
 from matplotlib import image
 from matplotlib import pyplot
+
+from matplotlib import pyplot as plt
+# from matplotlib import image as mpimg
+
 from numpy import asarray
 
 
@@ -10,6 +14,8 @@ class ImageProcessor():
 	def load(self, path):
 		img = image.imread(path)
 		print(f"\nImage dimentions: {img.shape[:-1]}\n")
+		plt.imshow(img)
+		plt.show()
 		return(asarray(img))
 
 
