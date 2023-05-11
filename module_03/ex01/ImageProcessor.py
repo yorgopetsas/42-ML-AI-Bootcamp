@@ -1,15 +1,14 @@
+from numpy import asarray
 from matplotlib import image
 from matplotlib import pyplot
-
 from matplotlib import pyplot as plt
 # from matplotlib import image as mpimg
-
-from numpy import asarray
 
 
 class ImageProcessor():
 	def __init__(self):
 		pass
+
 
 	def load(self, path):
 		img = image.imread(path)
@@ -26,8 +25,8 @@ class ImageProcessor():
 
 def main():
 
-	path = "42AI.png"
 
+	path = "42AI.png"
 	my_obj = ImageProcessor()
 	array = my_obj.load(path)
 	my_obj.display(array)
@@ -35,3 +34,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
