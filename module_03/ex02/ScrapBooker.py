@@ -5,6 +5,7 @@ class ScrapBooker():
 	def __init__(self):
 		pass
 
+
 	def crop(self, array, dim, position=(0,0)):
 
 
@@ -22,6 +23,7 @@ class ScrapBooker():
 
 
 	def thin(self, array, n, axis):
+
 
 		x = len(array)
 		y = len(array[0])
@@ -58,6 +60,7 @@ class ScrapBooker():
 			array = np.delete(array, to_delete, axis=1)
 			return(array)
 
+
 		elif axis == 1:
 			to_delete = []
 			print(to_delete)
@@ -74,23 +77,52 @@ class ScrapBooker():
 			# Delete specified columns
 			array = np.delete(array, to_delete, axis=0)
 			return(array)
+	
+
+	def juxtapose(self,array, n, axis):
+
+		x = len(array)
+		y = len(array[0])
+		# print(x)
+		# print(array)
+		for z in range(x):
+			print(array)
+			# Add values to the row
+			array = np.append(array, array[0])
+		print(array)
+
 
 
 def main():
 	
+	#####################################
+	# INITIATE CLASS OBJECT
+	#####################################
 	spb = ScrapBooker()
+
+	#####################################
+	# TEST CROP
+	#####################################
 	# arr1 = np.arange(0,25).reshape(5,5)
 	# print(arr1)
 	# spb.crop(arr1, (3,1),(1,0))
 
-	arr2 = np.array("A B C D E F G H I".split() * 6).reshape(-1,9)
+	#####################################
+	# TEST THIN
+	#####################################
+	# arr2 = np.array("A B C D E F G H I".split() * 6).reshape(-1,9)
 	# Deletes every n-th line pixels along the specified axis 
 	# Last argument -> (0: Horizontal, 1: Vertical)
-	new = spb.thin(arr2,3,1)
-	new = spb.thin(arr2,3,0)
+	# new = spb.thin(arr2,3,1)
+	# new = spb.thin(arr2,3,0)
+	# print(new)
 
-	print(new)
-
+	#####################################
+	# TEST JUXTAPOSE
+	#####################################
+	arr3 = np.array([[1, 2, 3],[1, 2, 3],[1, 2, 3]])
+	spb.juxtapose(arr3, 3, 1)
+	# print(arr3)
 
 if __name__ == "__main__":
     main()
@@ -156,6 +188,9 @@ if __name__ == "__main__":
 # This function should not raise any Exception.
 # """
 # ... your code ...
+
+
+
 # def mosaic(self, array, dim):
 # """
 # Makes a grid with multiple copies of the array. The dim argument specifies
