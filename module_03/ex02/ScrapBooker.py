@@ -1,12 +1,6 @@
 
 import numpy as np
 
-
-
-
-
-
-
 class ScrapBooker():
 	def __init__(self):
 		pass
@@ -27,38 +21,56 @@ class ScrapBooker():
 
 
 	def thin(self, array, n, axis):
-		
+
 		x = len(array)
 		y = len(array[0])
+		d = n - 1
+		if axis == 0:
+			axis = 1
+		elif axis == 1:
+			axis = 0 
+		# d = y // n 
+		if x < n:
+			print(f'Please provide a value under {x}')
+			quit()
+		if axis < 0 or axis > 1:
+			print(f'Please provide a value between 0 and 1')
+			quit()
+		
+		for x in range(3):
+			try:
+				array = np.delete(array, (n+g), axis)
+				g+=2
+			except:
+				pass
+		# array = np.delete(array, 6, axis)
 
-		arr2 = []
-
-
-		for v in range(x):
-			for h in range(y):
-				if h != n - 1:
-					arr2.append(array[v][h])
-					# print(array[v][h], end="")
-					# print(array[v][h])
-			print()
-
-		print(arr2)
+		return(array)
 
 
 
+		# ’A’, ’B’, ’D’, ’E’, ’G’, ’H’]
 
 
+		# 3 / 9
 
+		# 9/3
+		# 8/5
+		# 7/7
 
 def main():
-	print('start')
+	# print('start')
 	spb = ScrapBooker()
 	# arr1 = np.arange(0,25).reshape(5,5)
-	
-	# spb.crop(arr1, (3,2),(1,0))
+	# print(arr1)
+	# spb.crop(arr1, (3,1),(1,0))
 	arr2 = np.array("A B C D E F G H I".split() * 6).reshape(-1,9)
-	spb.thin(arr2,3,0)
-	# print(arr2)
+
+	# Deletes every n-th line pixels along the specified axis 
+	# (0: Horizontal, 1: Vertical)
+	print(arr2)
+	new = spb.thin(arr2,3,0)
+	print(new)
 
 
 if __name__ == "__main__":
@@ -102,6 +114,9 @@ if __name__ == "__main__":
 # This function should not raise any Exception.
 # """
 # ... your code ...
+
+
+
 # def thin(self, array, n, axis):
 # """
 # Deletes every n-th line pixels along the specified axis (0: Horizontal, 1: Vertical)
