@@ -7,6 +7,7 @@ class ScrapBooker():
 
 	def crop(self, array, dim, position=(0,0)):
 
+
 		x = len(array)
 		y = len(array[0])
 
@@ -24,74 +25,75 @@ class ScrapBooker():
 
 		x = len(array)
 		y = len(array[0])
-		d = n - 1
-		if axis == 0:
-			axis = 1
-		elif axis == 1:
-			axis = 0 
-		# d = y // n 
-		if x < n:
-			print(f'Please provide a value under {x}')
+
+
+		# if axis == 0:
+		# 	axis = 1
+		# elif axis == 1:
+		# 	axis = 0 
+
+
+		if y < n:
+			print(f'Please provide a value under {y}')
 			quit()
+
+
 		if axis < 0 or axis > 1:
 			print(f'Please provide a value between 0 and 1')
 			quit()
-		
-		for x in range(3):
-			try:
-				array = np.delete(array, (n+g), axis)
-				g+=2
-			except:
-				pass
-		# array = np.delete(array, 6, axis)
-
-		return(array)
 
 
+		if axis == 0:
+			to_delete = []	
+			for i in range(1,y+1):
+				r = (n*i) - 1
+				if r > y-1 :
+					break
+				if r < 0:
+					continue
+				to_delete.append(r)
+				# Check what will be deleted
+				print(to_delete)
+			# Delete specified columns
+			array = np.delete(array, to_delete, axis=1)
+			return(array)
 
-		# ’A’, ’B’, ’D’, ’E’, ’G’, ’H’]
+		elif axis == 1:
+			to_delete = []
+			print(to_delete)
 
+			for i in range(1,x+1):
+				r = (n*i) - 1
+				if r > x-1 :
+					break
+				if r < 0:
+					continue
+				to_delete.append(r)
+				# Check what will be deleted
+				print(to_delete)
+			# Delete specified columns
+			array = np.delete(array, to_delete, axis=0)
+			return(array)
 
-		# 3 / 9
-
-		# 9/3
-		# 8/5
-		# 7/7
 
 def main():
-	# print('start')
+	
 	spb = ScrapBooker()
 	# arr1 = np.arange(0,25).reshape(5,5)
 	# print(arr1)
 	# spb.crop(arr1, (3,1),(1,0))
-	arr2 = np.array("A B C D E F G H I".split() * 6).reshape(-1,9)
 
+	arr2 = np.array("A B C D E F G H I".split() * 6).reshape(-1,9)
 	# Deletes every n-th line pixels along the specified axis 
-	# (0: Horizontal, 1: Vertical)
-	print(arr2)
+	# Last argument -> (0: Horizontal, 1: Vertical)
+	new = spb.thin(arr2,3,1)
 	new = spb.thin(arr2,3,0)
+
 	print(new)
 
 
 if __name__ == "__main__":
     main()
-
-
-
-# [0 1 2 3 4]
-# [5 6 7 8 9]
-# [10 11 12 13 14]
-# [15 16 17 18 19]
-# [20 21 22 23 24]
-
-
-
-# [['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I']
-#  ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I']
-#  ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I']
-#  ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I']
-#  ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I']
-#  ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I']]
 
 
 
@@ -135,6 +137,8 @@ if __name__ == "__main__":
 # This function should not raise any Exception.
 # """
 # ... your code ...
+
+
 # def juxtapose(self, array, n, axis):
 # """
 # Juxtaposes n copies of the image along the specified axis.
@@ -168,3 +172,6 @@ if __name__ == "__main__":
 # -------
 # This function should not raise any Exception.
 # """
+
+
+
