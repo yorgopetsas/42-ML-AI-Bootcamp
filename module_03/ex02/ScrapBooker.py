@@ -1,12 +1,29 @@
 
 import numpy as np
 
+
 class ScrapBooker():
 	def __init__(self):
 		pass
 
 
 	def crop(self, array, dim, position=(0,0)):
+		"""
+		Crops the image as a rectangle via dim arguments (being the new height
+		and width of the image) from the coordinates given by position arguments.
+		Args:
+		-----
+		array: numpy.ndarray
+		dim: tuple of 2 integers.
+		position: tuple of 2 integers.
+		Return:
+		-------
+		new_arr: the cropped numpy.ndarray.
+		None (if combinaison of parameters not compatible).
+		Raise:
+		------
+		This function should not raise any Exception.
+		"""
 
 
 		x = len(array)
@@ -23,16 +40,30 @@ class ScrapBooker():
 
 
 	def thin(self, array, n, axis):
-
-
-		x = len(array)
-		y = len(array[0])
-
-
+		"""
+		Deletes every n-th line pixels along the specified axis (0: Horizontal, 1: Vertical)
+		Args:
+		-----
+		array: numpy.ndarray.
+		n: non null positive integer lower than the number of row/column of the array
+		(depending of axis value).
+		axis: positive non null integer.
+		Return:
+		-------
+		new_arr: thined numpy.ndarray.
+		None (if combinaison of parameters not compatible).
+		Raise:
+		------
+		This function should not raise any Exception.
+		"""
 		# if axis == 0:
 		# 	axis = 1
 		# elif axis == 1:
 		# 	axis = 0 
+
+
+		x = len(array)
+		y = len(array[0])
 
 
 		if y < n:
@@ -55,8 +86,7 @@ class ScrapBooker():
 					continue
 				to_delete.append(r)
 				# Check what will be deleted
-				print(to_delete)
-			# Delete specified columns
+				# print(to_delete)
 			array = np.delete(array, to_delete, axis=1)
 			return(array)
 
@@ -73,32 +103,72 @@ class ScrapBooker():
 					continue
 				to_delete.append(r)
 				# Check what will be deleted
-				print(to_delete)
-			# Delete specified columns
+				# print(to_delete)
 			array = np.delete(array, to_delete, axis=0)
 			return(array)
 	
 
 	def juxtapose(self,array, n, axis):
+		# """
+		# Juxtaposes n copies of the image along the specified axis.
+		# Args:
+		# -----
+		# array: numpy.ndarray.
+		# n: positive non null integer.
+		# axis: integer of value 0 or 1.
+		# Return:
+		# -------
+		# new_arr: juxtaposed numpy.ndarray.
+		# None (combinaison of parameters not compatible).
+		# Raises:
+		# -------
+		# This function should not raise any Exception.
+		# """
 
 		x = len(array)
 		y = len(array[0])
-		# print(x)
+
+		st = array[0]
+		
+
+		# print(st)
 		# print(array)
-		for z in range(x):
+
+
+		for z in range(x-1):
 			print(array)
 			# Add values to the row
-			array = np.append(array, array[0])
-		print(array)
+			array = np.append(array[0][z], st, axis)
+		# print(array)
 
+
+	def mosaic(self, array, dim):
+		"""
+		Makes a grid with multiple copies of the array. The dim argument specifies
+		the number of repetition along each dimensions.
+		Args:
+		-----
+		array: numpy.ndarray.
+		dim: tuple of 2 integers.
+		Return:
+		-------
+		new_arr: mosaic numpy.ndarray.
+		None (combinaison of parameters not compatible).
+		Raises:
+		-------
+		This function should not raise any Exception.
+		"""
+		pass
 
 
 def main():
-	
+
+
 	#####################################
 	# INITIATE CLASS OBJECT
 	#####################################
 	spb = ScrapBooker()
+
 
 	#####################################
 	# TEST CROP
@@ -106,6 +176,7 @@ def main():
 	# arr1 = np.arange(0,25).reshape(5,5)
 	# print(arr1)
 	# spb.crop(arr1, (3,1),(1,0))
+
 
 	#####################################
 	# TEST THIN
@@ -117,96 +188,16 @@ def main():
 	# new = spb.thin(arr2,3,0)
 	# print(new)
 
+
 	#####################################
 	# TEST JUXTAPOSE
 	#####################################
 	arr3 = np.array([[1, 2, 3],[1, 2, 3],[1, 2, 3]])
-	spb.juxtapose(arr3, 3, 1)
+	spb.juxtapose(arr3, 3, 0)
 	# print(arr3)
+
 
 if __name__ == "__main__":
     main()
-
-
-
-# # within the class
-# def crop(self, array, dim, position=(0,0)):
-# """
-# Crops the image as a rectangle via dim arguments (being the new height
-# and width of the image) from the coordinates given by position arguments.
-# Args:
-# -----
-# array: numpy.ndarray
-# dim: tuple of 2 integers.
-# position: tuple of 2 integers.
-# Return:
-# -------
-# new_arr: the cropped numpy.ndarray.
-# None (if combinaison of parameters not compatible).
-# Raise:
-# ------
-# This function should not raise any Exception.
-# """
-# ... your code ...
-
-
-
-# def thin(self, array, n, axis):
-# """
-# Deletes every n-th line pixels along the specified axis (0: Horizontal, 1: Vertical)
-# Args:
-# -----
-# array: numpy.ndarray.
-# n: non null positive integer lower than the number of row/column of the array
-# (depending of axis value).
-# axis: positive non null integer.
-# Return:
-# -------
-# new_arr: thined numpy.ndarray.
-# None (if combinaison of parameters not compatible).
-# Raise:
-# ------
-# This function should not raise any Exception.
-# """
-# ... your code ...
-
-
-# def juxtapose(self, array, n, axis):
-# """
-# Juxtaposes n copies of the image along the specified axis.
-# Args:
-# -----
-# array: numpy.ndarray.
-# n: positive non null integer.
-# axis: integer of value 0 or 1.
-# Return:
-# -------
-# new_arr: juxtaposed numpy.ndarray.
-# None (combinaison of parameters not compatible).
-# Raises:
-# -------
-# This function should not raise any Exception.
-# """
-# ... your code ...
-
-
-
-# def mosaic(self, array, dim):
-# """
-# Makes a grid with multiple copies of the array. The dim argument specifies
-# the number of repetition along each dimensions.
-# Args:
-# -----
-# array: numpy.ndarray.
-# dim: tuple of 2 integers.
-# Return:
-# -------
-# new_arr: mosaic numpy.ndarray.
-# None (combinaison of parameters not compatible).
-# Raises:
-# -------
-# This function should not raise any Exception.
-# """
-
 
 
