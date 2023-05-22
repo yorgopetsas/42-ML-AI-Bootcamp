@@ -128,18 +128,27 @@ class ScrapBooker():
 		x = len(array)
 		y = len(array[0])
 
-		st = array[0]
+		# st = array[0]
 		
+		# if axis == 0:
+		# 	axis = 1
+		# elif axis == 1:
+		# 	axis = 0 
 
 		# print(st)
 		# print(array)
 
 
-		for z in range(x-1):
-			print(array)
-			# Add values to the row
-			array = np.append(array[0][z], st, axis)
-		# print(array)
+		reshaped_array = np.tile(array, (axis, n))
+		# reshaped_array = array.reshape(3, 9)
+
+
+		# for z in range(x-1):
+		# 	print(array)
+		# 	# Add values to the row
+		# array[0] = [1, 2, 3, 4, 5, 6] 
+		# array = np.append(array[z], st, axis)
+		print(reshaped_array)
 
 
 	def mosaic(self, array, dim):
@@ -193,7 +202,7 @@ def main():
 	# TEST JUXTAPOSE
 	#####################################
 	arr3 = np.array([[1, 2, 3],[1, 2, 3],[1, 2, 3]])
-	spb.juxtapose(arr3, 3, 0)
+	spb.juxtapose(arr3, 3, 1)
 	# print(arr3)
 
 
