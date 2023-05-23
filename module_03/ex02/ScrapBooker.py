@@ -1,4 +1,3 @@
-
 import numpy as np
 
 
@@ -42,7 +41,6 @@ class ScrapBooker():
 					# Start Point
 					for z in range(dim[0]):
 						for y in range(dim[1]):
-							# print(array[v+z][h+y])
 							lst.append(array[v+z][h+y])
 
 
@@ -127,21 +125,21 @@ class ScrapBooker():
 	def juxtapose(self,array, n, axis):
 
 
-		# """
-		# Juxtaposes n copies of the image along the specified axis.
-		# Args:
-		# -----
-		# array: numpy.ndarray.
-		# n: positive non null integer.
-		# axis: integer of value 0 or 1.
-		# Return:
-		# -------
-		# new_arr: juxtaposed numpy.ndarray.
-		# None (combinaison of parameters not compatible).
-		# Raises:
-		# -------
-		# This function should not raise any Exception.
-		# """
+		"""
+		Juxtaposes n copies of the image along the specified axis.
+		Args:
+		-----
+		array: numpy.ndarray.
+		n: positive non null integer.
+		axis: integer of value 0 or 1.
+		Return:
+		-------
+		new_arr: juxtaposed numpy.ndarray.
+		None (combinaison of parameters not compatible).
+		Raises:
+		-------
+		This function should not raise any Exception.
+		"""
 
 
 		if axis == 1:
@@ -171,7 +169,12 @@ class ScrapBooker():
 		-------
 		This function should not raise any Exception.
 		"""
-		pass
+
+		# arr = array[position[0], position[0]:dim[0]]
+
+		arr = np.tile(array, (dim[0], dim[1]))
+		return(arr)
+
 
 
 def main():
@@ -186,10 +189,10 @@ def main():
 	#####################################
 	# TEST CROP
 	#####################################
-	arr1 = np.arange(0,25).reshape(5,5)
-	print(arr1)
-	arr1 = spb.crop(arr1, (4,1),(1,1))
-	print(arr1)
+	# arr1 = np.arange(0,25).reshape(5,5)
+	# print(arr1)
+	# arr1 = spb.crop(arr1, (4,1),(1,1))
+	# print(arr1)
 
 
 	#####################################
@@ -211,38 +214,17 @@ def main():
 	# print(arr3)	
 
 
+	#####################################
+	# TEST MOSAIC
+	#####################################
+	arr4 = np.array([[1,2,3]])
+	# print(arr4)
+	arr4 = spb.mosaic(arr4, (1,2))
+	print(arr4)
+
+
+
 if __name__ == "__main__":
     main()
-
-
-
-# GARBAGE
-
-		# x = len(array)
-		# y = len(array[0])
-
-
-		# print(reshaped_array)
-		# st = array[0]
-		
-		# if axis == 0:
-		# 	axis = 1
-		# elif axis == 1:
-		# 	axis = 0 
-
-		# print(st)
-		# print(array)
-
-
-		
-		# reshaped_array = array.reshape(3, 9)
-
-
-		# for z in range(x-1):
-		# 	print(array)
-		# 	# Add values to the row
-		# array[0] = [1, 2, 3, 4, 5, 6] 
-		# array = np.append(array[z], st, axis)
-
 
 
