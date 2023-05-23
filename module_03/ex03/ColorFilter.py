@@ -220,34 +220,20 @@ def main():
 
 	my_obj = ColorFilter(path)
 	array = my_obj.load(path)
+
+
+	# TEST BLUE
 	my_obj.to_blue(array)
+	# TEST RED
 	my_obj.to_red(array)
+	# TEST GREEN
 	my_obj.to_green(array)
+	# TEST CELLULOID
 	my_obj.to_celluloid(path)
+	# TEST INVERT
 	my_obj.invert(path)
 
 
 if __name__ == "__main__":
     main()
 
-
-
-
-	
-	
-
-
-	
-	
-
-
-
-
-
-
-
-
-
-	# # ORIIGNAL METHOD
-	# # def to_grayscale(self, array, filter, **kwargs):
-	# # 	pass
