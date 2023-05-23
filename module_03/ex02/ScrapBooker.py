@@ -8,6 +8,8 @@ class ScrapBooker():
 
 
 	def crop(self, array, dim, position=(0,0)):
+
+
 		"""
 		Crops the image as a rectangle via dim arguments (being the new height
 		and width of the image) from the coordinates given by position arguments.
@@ -40,6 +42,8 @@ class ScrapBooker():
 
 
 	def thin(self, array, n, axis):
+
+		
 		"""
 		Deletes every n-th line pixels along the specified axis (0: Horizontal, 1: Vertical)
 		Args:
@@ -109,6 +113,8 @@ class ScrapBooker():
 	
 
 	def juxtapose(self,array, n, axis):
+
+
 		# """
 		# Juxtaposes n copies of the image along the specified axis.
 		# Args:
@@ -125,30 +131,14 @@ class ScrapBooker():
 		# This function should not raise any Exception.
 		# """
 
-		x = len(array)
-		y = len(array[0])
 
-		# st = array[0]
-		
-		# if axis == 0:
-		# 	axis = 1
-		# elif axis == 1:
-		# 	axis = 0 
-
-		# print(st)
-		# print(array)
+		if axis == 1:
+			reshaped_array = np.tile(array, (axis, n))
+		else:
+			reshaped_array = np.tile(array, (n, 1))
 
 
-		reshaped_array = np.tile(array, (axis, n))
-		# reshaped_array = array.reshape(3, 9)
-
-
-		# for z in range(x-1):
-		# 	print(array)
-		# 	# Add values to the row
-		# array[0] = [1, 2, 3, 4, 5, 6] 
-		# array = np.append(array[z], st, axis)
-		print(reshaped_array)
+		return(reshaped_array)
 
 
 	def mosaic(self, array, dim):
@@ -202,11 +192,42 @@ def main():
 	# TEST JUXTAPOSE
 	#####################################
 	arr3 = np.array([[1, 2, 3],[1, 2, 3],[1, 2, 3]])
-	spb.juxtapose(arr3, 3, 1)
-	# print(arr3)
+	print(spb.juxtapose(arr3, 2, 0))	
+	# print(arr3)	
 
 
 if __name__ == "__main__":
     main()
+
+
+
+# GARBAGE
+
+		# x = len(array)
+		# y = len(array[0])
+
+
+		# print(reshaped_array)
+		# st = array[0]
+		
+		# if axis == 0:
+		# 	axis = 1
+		# elif axis == 1:
+		# 	axis = 0 
+
+		# print(st)
+		# print(array)
+
+
+		
+		# reshaped_array = array.reshape(3, 9)
+
+
+		# for z in range(x-1):
+		# 	print(array)
+		# 	# Add values to the row
+		# array[0] = [1, 2, 3, 4, 5, 6] 
+		# array = np.append(array[z], st, axis)
+
 
 
