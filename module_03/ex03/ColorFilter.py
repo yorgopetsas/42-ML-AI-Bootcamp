@@ -185,6 +185,7 @@ class ColorFilter():
 		celluloid = (celluloid - np.min(celluloid)) / (np.max(celluloid) - np.min(celluloid)) * 255
 		celluloid = celluloid.astype(np.uint8)
 
+
 		plt.imsave('celluloid.png', celluloid, cmap='gray') 
 
 
@@ -210,7 +211,33 @@ class ColorFilter():
 		This function should not raise any Exception.
 		--> Authorized functions: .sum,.shape,.reshape,.broadcast_to,.as_type.
 		--> Authorized operators: *,/, =
-		"""		
+		"""
+
+
+		t = next(iter(kwargs.values()), None)
+
+
+		# print(t[0])
+		# print(filter)
+
+
+		image = array.astype(float)
+
+
+		# print(image)
+
+
+		if filter.lower() in ['weight', 'w']:
+			weights = np.array([0.2989, 0.5870, 0.1140])
+			grayscale_image = np.dot(image, weights)
+
+
+		grayscale_image = (grayscale_image - np.min(grayscale_image)) * (255.0 / np.max(grayscale_image))
+		grayscale_image = grayscale_image.astype(np.uint8)
+
+
+		return grayscale_image
+		# print(weights)
 
 def main():
 
@@ -223,15 +250,19 @@ def main():
 
 
 	# TEST BLUE
-	my_obj.to_blue(array)
+	# my_obj.to_blue(array)
 	# TEST RED
-	my_obj.to_red(array)
+	# my_obj.to_red(array)
 	# TEST GREEN
-	my_obj.to_green(array)
+	# my_obj.to_green(array)
 	# TEST CELLULOID
-	my_obj.to_celluloid(path)
+	# my_obj.to_celluloid(path)
 	# TEST INVERT
-	my_obj.invert(path)
+	# my_obj.invert(path)
+	# TEST GRAYSCALE
+	a = my_obj.to_grayscale(array, 'weight', weights = [0.2, 0.3, 0.5])
+	print(a)
+	# my_obj.to_grayscale(array, 'm')
 
 
 if __name__ == "__main__":
