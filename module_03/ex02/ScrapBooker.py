@@ -217,10 +217,10 @@ def main():
 	#####################################
 	# TEST MOSAIC
 	#####################################
-	arr4 = np.array([[1,2,3]])
+	# arr4 = np.array([[1,2,3]])
 	# print(arr4)
-	arr4 = spb.mosaic(arr4, (1,2))
-	print(arr4)
+	# arr4 = spb.mosaic(arr4, (3,3))
+	# print(arr4)
 
 
 
