@@ -28,8 +28,12 @@ class ScrapBooker():
 		"""
 
 
+		# zz = dim[0]*position[0]
+
 		x = len(array)
 		y = len(array[0])
+
+		lst=[]
 
 
 		for v in range(x):
@@ -38,12 +42,20 @@ class ScrapBooker():
 					# Start Point
 					for z in range(dim[0]):
 						for y in range(dim[1]):
-							print(array[v+z][h+y])
+							# print(array[v+z][h+y])
+							lst.append(array[v+z][h+y])
+
+
+		if dim[1] == 0:
+			arr = array[position[0], position[0]:dim[0]]
+		else:
+			arr = np.array(lst).reshape((-1, dim[1]))
+		return(arr)
 
 
 	def thin(self, array, n, axis):
 
-		
+
 		"""
 		Deletes every n-th line pixels along the specified axis (0: Horizontal, 1: Vertical)
 		Args:
@@ -142,6 +154,8 @@ class ScrapBooker():
 
 
 	def mosaic(self, array, dim):
+
+
 		"""
 		Makes a grid with multiple copies of the array. The dim argument specifies
 		the number of repetition along each dimensions.
@@ -172,9 +186,10 @@ def main():
 	#####################################
 	# TEST CROP
 	#####################################
-	# arr1 = np.arange(0,25).reshape(5,5)
-	# print(arr1)
-	# spb.crop(arr1, (3,1),(1,0))
+	arr1 = np.arange(0,25).reshape(5,5)
+	print(arr1)
+	arr1 = spb.crop(arr1, (4,1),(1,1))
+	print(arr1)
 
 
 	#####################################
@@ -191,8 +206,8 @@ def main():
 	#####################################
 	# TEST JUXTAPOSE
 	#####################################
-	arr3 = np.array([[1, 2, 3],[1, 2, 3],[1, 2, 3]])
-	print(spb.juxtapose(arr3, 2, 0))	
+	# arr3 = np.array([[1, 2, 3],[1, 2, 3],[1, 2, 3]])
+	# print(spb.juxtapose(arr3, 2, 0))	
 	# print(arr3)	
 
 
