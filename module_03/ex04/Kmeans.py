@@ -3,6 +3,13 @@ import random
 # from sklearn.preprocessing import MinMaxScaler
 import csv
 
+
+
+########################################################################
+# HAVE TO FINISH THE METHOD FOR DEFINITION OF MEAN OF CLUSTERED POINTS
+########################################################################
+
+
 class CsvReader:
     def __init__(self, filename=None, sep=',', header=False, skip_top=0, skip_bottom=0):
         self.filename = filename
@@ -54,7 +61,7 @@ class CsvReader:
 
 
 class KmeansClustering:
-	
+
 
 	def __init__(self, max_iter=20, ncentroid=4):
 		self.ncentroid = ncentroid # number of centroids
@@ -62,11 +69,26 @@ class KmeansClustering:
 		self.centroids = [] # values of the centroids
 
 
-	def get_mean(self, source):
-		res = 0
-		for s in source:
-			res+=int(s)
-		return(res//len(source))
+	def get_mean(self, source, data):
+
+
+		x=y=z=0
+		cnt = 0
+		for d in data:
+			if d[0] in source:
+				print(d)
+				# print(d[1],d[2],d[3])
+				# x+=d[1]
+				# y+=d[2]
+				# z+=d[3]
+				# cnt+=1
+
+
+		# res = [x/cnt, y/cnt, z/cnt]
+		res = "blah"
+
+
+		return(res)
 
 
 	def get_dist(self, a, b):
@@ -79,7 +101,9 @@ class KmeansClustering:
 		z1 = round(float(a[3]),5)
 		z2 = round(float(b[3]),5)
 
+
 		dis = ( ((x2 - x1)**2) + ((y2 - y1)**2) + ((z2 - z1)**2) ) ** 0.5
+
 
 		return(dis)
 
@@ -143,7 +167,7 @@ class KmeansClustering:
 
 		for k,v in dicts.items():
 			print(k,v)
-			meanz = self.get_mean(v)
+			meanz = self.get_mean(v, data)
 			print(meanz)
 
 
