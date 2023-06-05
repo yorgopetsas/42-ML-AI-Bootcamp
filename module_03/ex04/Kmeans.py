@@ -1,5 +1,7 @@
 import numpy as np
-
+import random
+# from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 import csv
 
 class CsvReader:
@@ -52,15 +54,10 @@ class CsvReader:
             return None
 
 
-
-
-
-
-
 class KmeansClustering:
 	
 
-	def __init__(self, max_iter=20, ncentroid=5):
+	def __init__(self, max_iter=20, ncentroid=4):
 		self.ncentroid = ncentroid # number of centroids
 		self.max_iter = max_iter # number of max iterations to update the centroids
 		self.centroids = [] # values of the centroids
@@ -80,12 +77,20 @@ class KmeansClustering:
 		-------
 		This function should not raise any Exception.
 		"""
+		starting_centroids = random.sample(range(0, (len(X)+1) + 1), 4)
+		
+		print(starting_centroids)
+		
+		# Normalize data:
+		values = data[1:, 1:].astype(float)
+		scaler = MinMaxScaler()
+		normalized_values = scaler.fit_transform(values)
+		data[1:, 1:] = normalized_values
+		print(data)
 
-		print('ohhh yeah')
 
-
-def get_dist(self, entries, point_1, point_2):
-		pass
+	def get_dist(self, entries, point_1, point_2):
+			pass
 
 
 	def predict(self, X):
@@ -109,14 +114,14 @@ if __name__ == "__main__":
 	k = KmeansClustering()
 
 
-	filepath='solar_system_census.csv' 
+	filepath='code.csv' 
 	ncentroid=4
 	max_iter=30
 
 
-	with CsvReader("solar_system_census.csv", header=True) as file:
+	with CsvReader("code.csv", header=True) as file:
 		data = np.array(file.getdata())
             
                 
 	# k.get_dist(self, entries, point_1, point_2):
-	# k.fit(data.astype(np.float))
+	k.fit(data)
