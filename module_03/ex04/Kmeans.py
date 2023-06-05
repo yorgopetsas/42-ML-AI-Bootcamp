@@ -1,7 +1,6 @@
 import numpy as np
 import random
-# from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import MinMaxScaler
+# from sklearn.preprocessing import MinMaxScaler
 import csv
 
 class CsvReader:
@@ -62,7 +61,24 @@ class KmeansClustering:
 		self.max_iter = max_iter # number of max iterations to update the centroids
 		self.centroids = [] # values of the centroids
 	
+	def get_dist(self, a, b):
+		
+		# print(a)
+		# print(b)
 
+		x1 = round(float(a[1]), 5)
+		x2 = round(float(b[1]), 5)
+        
+		y1 = round(float(a[2]), 5)
+		y2 = round(float(b[2]), 5)
+
+		z1 = round(float(a[3]), 5)
+		z2 = round(float(b[3]), 5)
+
+		dis = ( ((x2 - x1)**2) + ((y2 - y1)**2) + ((z2 - z1)**2) ) ** 0.5
+		
+		return(dis)
+        
 	def fit(self, X):
 		"""
 		Run the K-means clustering algorithm.
@@ -80,17 +96,68 @@ class KmeansClustering:
 		starting_centroids = random.sample(range(0, (len(X)+1) + 1), 4)
 		
 		print(starting_centroids)
+
 		
-		# Normalize data:
+		# Have to Normalize data:
 		values = data[1:, 1:].astype(float)
-		scaler = MinMaxScaler()
-		normalized_values = scaler.fit_transform(values)
-		data[1:, 1:] = normalized_values
-		print(data)
+
+		data_2 = []
+        
+		
+		# Create data frame with the centroids
+		for zz in data:
+			try:
+				if int(zz[0]) in starting_centroids:
+					data_2.append(zz.tolist())
+			except:
+				pass
+
+		# Create dictionary for each centroid
+		for it in data_2:
+			dict_name = "di_" + str(it[0])
+			# Create dictionary with key as item value
+			globals()[dict_name] = {it[0]: None}
 
 
-	def get_dist(self, entries, point_1, point_2):
-			pass
+		# Calculate shortest distance0
+		for i,zz in enumerate(data):
+			res = 10000000000000000000
+			tmp_id = 0
+			for sp in data_2:
+				if i != 0:
+					distance = self.get_dist(zz,sp)
+					# print(zz[0], distance, sp[0])
+					if distance < res:
+						res = distance
+						tmp_id = sp[0]
+			# print(f"Smallest Distance {zz[0]} is {res} and is for {tmp_id}")
+			dict_name = "di_" + str(tmp_id)
+			globals()[dict_name] = {tmp_id: [None]}
+			# dict_name 
+			print(dict_name)
+
+
+			# print(f"Smallest Distance between {zz[0]} and {sp[0]} is {res}")
+					# print(zz[0], distance, sp[0])
+
+
+		# # Access and modify the dictionaries
+		# di_30[30] = "Value of di_30"
+		# di_95[95] = "Value of di_95"
+		# di_94[94] = "Value of di_94"
+		# di_26[26] = "Value of di_26"
+
+
+        	# for every point in the array I have to calculate the difference to each centroid and return the smallest
+
+		#
+		# scaler = MinMaxScaler()
+		# normalized_values = scaler.fit_transform(values)
+		# data[1:, 1:] = normalized_values
+
+
+
+
 
 
 	def predict(self, X):
@@ -125,3 +192,4 @@ if __name__ == "__main__":
                 
 	# k.get_dist(self, entries, point_1, point_2):
 	k.fit(data)
+	# k.get_dist(a,b)
